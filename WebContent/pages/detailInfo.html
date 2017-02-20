@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>项目进度管理页面</title>
+	<link rel="stylesheet" type="text/css" href="../jquery-easyui-1.4.3/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../jquery-easyui-1.4.3/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../jquery-easyui-1.4.3/demo/demo.css">
+	<script type="text/javascript" src="../jquery-easyui-1.4.3/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery-easyui-1.4.3/jquery.easyui.min.js"></script>
+	<script type="text/javascript">
+	 $(function(){
+		$("#dg").datagrid({
+			url:"../ShowStudents.do",
+			columns:[[ 
+				{field:'id',title:'序号',width:100},
+				{field:'name',title:'项目名称',width:100},
+				{field:'password',title:'password',width:100}
+			]],
+			toolbar:'#toolbar',  //表格菜单
+			loadMsg:'嗖 ----正在火速加载中 -------------', //加载提示
+			pagination:true, //显示分页工具栏
+			rownumbers:true, //显示行号列
+			singleSelect:true,//是允许选择一行
+			queryParams:{   //在请求数据是发送的额外参数，如果没有则不用谢
+				name:'easyui',
+				hhh:'aa'
+			},
+			height:'300px'
+		});
+	
+	}); 
+	
+	function searchBtn(value,name){
+    	alert(value+":"+name);
+    }
+	</script>
+	<style type="text/css">
+		table {
+			border-right: 1px solid #00BFFF;
+			border-bottom: 1px solid #00BFFF;
+			border-collapse:collapse;
+		}
+		table td {
+			border-left: 1px solid #00BFFF;
+			border-top: 1px solid #00BFFF;
+		}
+		
+		#footer{
+			position:absolute; 
+			bottom: 0px;
+			left:15px;
+		}
+	</style>
+  </head>
+  <body>
+	<!-- <table id="dg">
+		<thead>项目进度表</thead>
+	</table>
+	<div id="toolbar">
+		<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" >添加</a>
+		<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" >编辑</a>
+		<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" >删除</a>
+	</div> -->
+	<form id="projectInfo" method="post">
+		<div id="p" class="easyui-panel" title="项目管理" style="fit:true;background:#fafafa;" data-options="iconCls:'icon-save',closable:true, collapsible:true,minimizable:true,maximizable:true">
+			<div style="text-align: right;font-family: 微软雅黑 ;margin-top: 2px;margin-right: 2px;">
+				<input id="ss" class="easyui-searchbox" style="width:300px"
+				    data-options="searcher:searchBtn,prompt:'请输入要搜索的值',menu:'#mm'"></input>
+				<div id="mm" style="width:120px">
+				    <div data-options="name:'name',iconCls:'icon-ok'">项目名</div>
+				    <div data-options="name:'date',iconCls:'icon-ok'">日期</div>
+				</div>
+			</div>
+			<div style="margin: 2px;">
+		   		<table class="easyui-datagrid" style="width: 100%;text-align: center;border: 1px;border-style: solid;border-color: #00BFFF;padding: 0px;" data-options="url:'../getProjectInfoList.do',fitColumns:true,singleSelect:true" >
+		   			<thead>
+		   			<tr><td data-options="field:'projectName',width:10" >projectName</td></tr>
+		   			</thead>
+		   			<!-- <tr style="text-align: center;font-size: 50px;" ><td colspan="14">项目进度表</td></tr>
+		   			<tr>
+		   				<td  rowspan="2">序号</td>
+		   				<td  rowspan="2" data-options="field:'projectName',width:10">项目名称</td>
+	  					<td  colspan="12" data-options="field:'month'" style="text-align: center;">月份</td>
+		   			</tr>
+		   			<tr>
+		   				<td  data-options="field:'janurary',width:50">一月</td>
+						<td  data-options="field:'february',width:50">二月</td>
+						<td  data-options="field:'march',width:50">三月</td>
+						<td  data-options="field:'april',width:50">四月</td>
+						<td  data-options="field:'code',width:50">五月</td>
+						<td  data-options="field:'june',width:50">六月</td>
+						<td  data-options="field:'july',width:50">七月</td>	
+						<td  data-options="field:'august',width:50">八月</td>
+						<td  data-options="field:'february',width:50">九月</td>
+						<td  data-options="field:'october',width:50">十月</td>
+						<td  data-options="field:'november',width:50">十一月</td>
+						<td  data-options="field:'december',width:50">十二月</td>
+		   			</tr> -->
+		   		</table>
+			
+			</div>
+	   		<div id="pp" class="easyui-pagination" style="background:#efefef;border:1px solid #ccc;margin-left: 2px;margin-right: 2px;margin-bottom: 2px;"
+			    data-options="total:'total',pageSize:10">
+			</div>
+		</div>
+		<footer id="footer"><address>上海市浦东新区创新西路199弄</address></footer>
+	</form>
+  </body>
+</html>

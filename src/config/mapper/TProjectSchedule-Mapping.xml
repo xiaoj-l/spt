@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spt.dao.TProjectScheduleDao">
+
+    <select id="getProjectScheduleInfoList" resultType="java.util.Map" parameterType="java.util.Map">
+        
+        	SELECT 
+        	TPI_PROJECT_ID AS projectId,
+        	TPI_ANNUAL_SCH_STATEMENT AS annualSchStatement,
+        	TPI_ATTACHMENT_URL as attachmentUrl,
+        	TPI_CREATE_DATE as createDate,
+        	TPI_CREATE_PERSON as createPerson,
+        	TPI_PROJECT_LEADER as projectLeader,
+        	TPI_PROJECT_NAME as projectName,
+        	TPI_PROJECT_SUMMARY projectSummary,
+        	TPI_REMARK as annualRemark,
+        	TPI_VALIDATE as validate,
+        	TPS_YEAR as year,
+        	TPS_MONTH as month,
+        	TPS_FINISH_DETAIL as finishDetail,
+        	TPS_MONTH_FINISHED as monthFinished,
+        	TPS_REMARKS as monthRemark
+        FROM 
+        	T_PROJECT_INFO,
+        	T_PROJECT_SCHEDULE 
+        WHERE 
+        	TPI_PROJECT_ID = TPS_PROJECT_ID 
+        AND 1 = 1
+        <if test="year != null">
+	        AND TPS_YEAR = #{year}
+        </if>
+        <if test="projectId != null">
+	        AND TPI_PROJECT_ID = #{projectId}
+        </if>
+    </select>
+</mapper>

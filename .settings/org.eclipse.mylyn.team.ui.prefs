@@ -1,0 +1,2 @@
+commit.comment.template=${task.key}\: ${task.description} \r\n\r\nTask-Url\: git@github.com\:xiaoj-l/spt.git
+eclipse.preferences.version=1
